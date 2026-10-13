@@ -1,0 +1,9 @@
+Rowtide
+
+This project uses unmodified open-source dependencies through their public APIs.
+The Rust DuckDB bindings and libduckdb-sys are MIT-licensed; DuckDB is maintained
+by its upstream contributors. Apache Arrow Rust libraries are Apache-2.0-licensed.
+
+A locked dependency and declared-license inventory is provided in
+docs/DEPENDENCIES.md. Dependencies retain their respective copyrights and licenses.
+This notice does not relicense third-party code or data.

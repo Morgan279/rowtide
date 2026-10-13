@@ -1,0 +1,13 @@
+{
+  "task": "monthly-store-report",
+  "purpose": "Check whether the supplied orders cover all explicitly requested stores before preparing the report.",
+  "inputs": [
+    {"id":"orders","path":"orders.csv","role":"order_rows","format":"csv","columns":["order_id","store","amount"]},
+    {"id":"stores","path":"expected_stores.csv","role":"expected_store_universe","format":"csv","columns":["store"]}
+  ],
+  "checks": [
+    {"id":"order_columns","input":"orders","kind":{"type":"schema","required":{"order_id":"VARCHAR","store":"VARCHAR","amount":"BIGINT"}}},
+    {"id":"unique_orders","input":"orders","kind":{"type":"key","columns":["order_id"]}},
+    {"id":"store_coverage","input":"orders","kind":{"type":"coverage","columns":["store"],"expected_input":"stores"}}
+  ]
+}

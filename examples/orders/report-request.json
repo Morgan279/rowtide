@@ -1,0 +1,15 @@
+{
+  "task": "fictional-monthly-store-report",
+  "purpose": "Report order counts and revenue in USD cents for fictional September 2026 retail orders after required checks pass.",
+  "inputs": [
+    {"id":"orders","path":"orders.csv","role":"order_rows","format":"csv","columns":["order_id","store","amount"],"reader":{"path":"consumer.py","parameters":{"period":"2026-09","amount_unit":"USD cents"}}},
+    {"id":"stores","path":"expected_stores.csv","role":"expected_store_universe","format":"csv","columns":["store"],"reader":{"path":"consumer.py","parameters":{"period":"2026-09","amount_unit":"USD cents"}}}
+  ],
+  "checks": [
+    {"id":"order_columns","input":"orders","kind":{"type":"schema","required":{"order_id":"VARCHAR","store":"VARCHAR","amount":"BIGINT"}}},
+    {"id":"unique_orders","input":"orders","kind":{"type":"key","columns":["order_id"]}},
+    {"id":"store_coverage","input":"orders","kind":{"type":"coverage","columns":["store"],"expected_input":"stores"}},
+    {"id":"store_columns","input":"stores","kind":{"type":"schema","required":{"store":"VARCHAR"}}},
+    {"id":"unique_stores","input":"stores","kind":{"type":"key","columns":["store"]}}
+  ]
+}

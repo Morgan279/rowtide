@@ -1,0 +1,24 @@
+[package]
+name = "rowtide"
+version = "0.2.1"
+edition = "2024"
+license = "Apache-2.0"
+description = "An agent-native toolkit for local data"
+
+[[bin]]
+name = "rowtide"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+duckdb = { version = "=1.10506.0", features = ["bundled", "parquet"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3"
+
+[build-dependencies]
+sha2 = "0.10"
